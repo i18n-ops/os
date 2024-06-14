@@ -1,0 +1,4 @@
+.snapshots/
+node_modules/
+bun.lockb
+/secret/
