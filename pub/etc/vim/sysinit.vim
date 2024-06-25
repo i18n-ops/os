@@ -87,7 +87,7 @@ autocmd FileType vue syntax sync fromstart
 autocmd BufWritePre *.vue :syntax sync fromstart
 
 au BufRead,BufNewFile *.mdt set filetype=markdown
-autocmd BufWritePost *.{md,mdt} :silent! !heyspace -i % -b /tmp -q
+"autocmd BufWritePost *.{md,mdt} :silent! !heyspace -i % -b /tmp -q
 autocmd BufWritePost *.{md,mdt} :edit
 autocmd BufWritePost *.{md,mdt} :redraw!
 
@@ -127,16 +127,16 @@ au BufWritePre *.{rs,lua,sh,h,cpp,c,v,proto,json,go,html,scss,css,dart,toml,pug}
 "
 let g:formatters_lua = ['stylua']
 "
-" let g:formatdef_biome = '"biome format"'
-" let g:formatters_js= ['biome']
-" let g:formatters_mjs= ['biome']
-" " let g:formatters_javascript = ['biome']
+let g:formatdef_biome = '"biome format"'
+let g:formatters_js= ['biome']
+let g:formatters_mjs= ['biome']
+let g:formatters_javascript = ['biome']
 " " autocmd BufWritePost *.{js,mjs} :silent! !bun x @biomejs/biome format --write %
 "
-let g:formatdef_pnppug = "'bun x prettier-pnp --quiet --log-level error --pnp @prettier/plugin-pug --stdin-filepath 1.pug'"
+let g:formatdef_pnppug = "'prettier-pnp --quiet --log-level error --pnp @prettier/plugin-pug --stdin-filepath 1.pug'"
 let g:formatters_pug= ['pnppug']
 
-let g:formatdef_fmttoml = "'bun x prettier-pnp --quiet --log-level error --pnp prettier-plugin-toml --stdin-filepath '.bufname('%')"
+let g:formatdef_fmttoml = "'prettier-pnp --quiet --log-level error --pnp prettier-plugin-toml --stdin-filepath '.bufname('%')"
 
 " let g:formatdef_fmttoml = "'taplo fmt --stdin-filepath '.bufname('%')"
 
@@ -188,7 +188,6 @@ au BufRead,BufNewFile *.svelte set filetype=vue
 filetype plugin indent on
 syntax enable
 set nocompatible
-set mouse=
 if exists('+termguicolors')
   set termguicolors
   try
@@ -334,6 +333,7 @@ autocmd BufNewFile *.sh 0r /etc/vim/bundle/template/vim.sh
 autocmd BufNewFile *.vue 0r /etc/vim/bundle/template/vim.vue
 autocmd BufNewFile *.ls 0r /etc/vim/bundle/template/vim.ls
 autocmd BufNewFile *.coffee 0r /etc/vim/bundle/template/vim.coffee
+autocmd BufNewFile *.js 0r /etc/vim/bundle/template/vim.js
 retab
 
 """""""""""""""""""""""""""""""""""""""
@@ -661,3 +661,9 @@ set autoread
 autocmd FileType python setlocal et sta sw=2 sts=2
 autocmd FileType markdown setlocal et sta sw=2 sts=2
 autocmd FileType xonsh setlocal et sta sw=2 sts=2
+set mouse=
+
+" 禁用r,因为mac下切换屏幕的时候,老是会替换为r
+nnoremap r <Nop>
+let g:ctrlp_user_command = 'fd --type f --color never "" %s'
+

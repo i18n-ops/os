@@ -1,6 +1,9 @@
 [include]
 path = ~/.config/git.conf
 
+[safe]
+directory = /opt/ssl
+
 [core]
 quotepath = false
 editor = vim
