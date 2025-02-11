@@ -1,0 +1,66 @@
+[include]
+path = ~/.config/git.conf
+
+[safe]
+directory = /opt/ssl
+
+[core]
+quotepath = false
+editor = vim
+precomposeUnicode = true
+pager = diff-so-fancy | less --tabs=4 -RFX
+excludesfile=~/.gitignore
+
+[alias]
+ci = commit -s
+st = status
+rclone =  !git clone --recursive
+rmain = !git submodule foreach --recursive "git checkout main"
+rpull = !git pull $1 && git submodule foreach --recursive \"git pull origin main --recurse-submodules\"
+rinit = !git submodule update --init --recursive --progress
+rc = rclone
+ri = rinit
+rp = rpull
+diffs = diff --staged
+
+[pull]
+default = current
+rebase = false
+
+[push]
+default = upstream
+
+[interactive]
+diffFilter = diff-so-fancy --patch
+
+[color]
+ui = true
+
+[color "diff-highlight"]
+oldNormal = red bold
+oldHighlight = red bold 52
+newNormal = green bold
+newHighlight = green bold 22
+
+[color "diff"]
+meta = 11
+frag = magenta bold
+func = 146 bold
+commit = yellow bold
+old = red bold
+new = green bold
+whitespace = red reverse
+
+[init]
+defaultBranch = main 
+[log]
+date = format:%Y-%m-%d %H:%M:%S
+
+[http]
+postBuffer = 524288000
+
+[filter "lfs"]
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true

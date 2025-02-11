@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@3-/coffee_plus": "^0.1.25",
+    "@3-/loader": "^0.0.2",
+    "@3-/walk": "^0.0.2"
+  }
+}

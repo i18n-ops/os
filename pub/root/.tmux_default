@@ -1,0 +1,4 @@
+if [ -z "${TMUX}" ]; then
+session=$(whoami)
+tmux new-session -A -s $session
+fi
